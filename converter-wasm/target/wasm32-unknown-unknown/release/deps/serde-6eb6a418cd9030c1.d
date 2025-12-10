@@ -1,0 +1,14 @@
+C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\deps\serde-6eb6a418cd9030c1.d: C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\build\serde-ba059d2188feb8f6\out/private.rs
+
+C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\deps\libserde-6eb6a418cd9030c1.rlib: C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\build\serde-ba059d2188feb8f6\out/private.rs
+
+C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\deps\libserde-6eb6a418cd9030c1.rmeta: C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\build\serde-ba059d2188feb8f6\out/private.rs
+
+C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\lib.rs:
+C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\integer128.rs:
+C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\mod.rs:
+C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\de.rs:
+C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde-1.0.228\src\private\ser.rs:
+C:\Projects\ConvertHub\converter-wasm\target\wasm32-unknown-unknown\release\build\serde-ba059d2188feb8f6\out/private.rs:
+
+# env-dep:OUT_DIR=C:\\Projects\\ConvertHub\\converter-wasm\\target\\wasm32-unknown-unknown\\release\\build\\serde-ba059d2188feb8f6\\out
