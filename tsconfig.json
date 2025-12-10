@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "allowJs": true,
     "moduleResolution": "node",
     "baseUrl": "./",
@@ -13,7 +13,7 @@
       ],
       "data/*": [
         "./data/*"
-      ],
+      ]
     },
     "target": "ES2017",
     "lib": [
@@ -39,8 +39,10 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/page.js"  ],
+    "**/*.tsx",
+    "app/page.js",
+    ".next/dev/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
