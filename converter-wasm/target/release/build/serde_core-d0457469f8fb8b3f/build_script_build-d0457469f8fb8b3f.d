@@ -1,5 +1,0 @@
-C:\Projects\ConvertHub\converter-wasm\target\release\build\serde_core-d0457469f8fb8b3f\build_script_build-d0457469f8fb8b3f.d: C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_core-1.0.228\build.rs
-
-C:\Projects\ConvertHub\converter-wasm\target\release\build\serde_core-d0457469f8fb8b3f\build_script_build-d0457469f8fb8b3f.exe: C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_core-1.0.228\build.rs
-
-C:\Users\Admin\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\serde_core-1.0.228\build.rs:
