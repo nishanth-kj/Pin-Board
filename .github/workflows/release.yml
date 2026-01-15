@@ -1,0 +1,157 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Linux dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libxcb-render0-dev libxcb-shape0-dev libxcb-xfixes0-dev libxkbcommon-dev libssl-dev
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Create AppImage
+        run: |
+          mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
+          cp target/release/Pin-Board AppDir/usr/bin/
+          cat > AppDir/usr/share/applications/pin-board.desktop << EOF
+          [Desktop Entry]
+          Name=Pin-Board
+          Exec=Pin-Board
+          Icon=pin-board
+          Type=Application
+          Categories=Utility;
+          EOF
+          # Create simple icon
+          cp assets/icon.png AppDir/usr/share/icons/hicolor/256x256/apps/pin-board.png || echo "No icon found, skipping"
+          # Package as tar.gz
+          cd AppDir && tar -czf ../Pin-Board-linux-x64.tar.gz * && cd ..
+
+      - name: Upload Linux Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: linux-build
+          path: Pin-Board-linux-x64.tar.gz
+
+  build-windows:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Create Setup Package
+        shell: pwsh
+        run: |
+          mkdir staging
+          cp target/release/Pin-Board.exe staging/
+          cp README.md staging/
+          Compress-Archive -Path staging/* -DestinationPath Pin-Board-windows-x64.zip
+
+      - name: Upload Windows Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: Pin-Board-windows-x64.zip
+
+  build-macos-intel:
+    name: Build macOS Intel
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: x86_64-apple-darwin
+
+      - name: Build
+        run: cargo build --release --target x86_64-apple-darwin
+
+      - name: Create DMG
+        run: |
+          mkdir -p dmg_contents
+          cp target/x86_64-apple-darwin/release/Pin-Board dmg_contents/
+          cp README.md dmg_contents/
+          hdiutil create -volname "Pin-Board" -srcfolder dmg_contents -ov -format UDZO Pin-Board-macos-intel.dmg
+
+      - name: Upload macOS Intel Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-intel-build
+          path: Pin-Board-macos-intel.dmg
+
+  build-macos-arm:
+    name: Build macOS ARM
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin
+
+      - name: Build
+        run: cargo build --release --target aarch64-apple-darwin
+
+      - name: Create DMG
+        run: |
+          mkdir -p dmg_contents
+          cp target/aarch64-apple-darwin/release/Pin-Board dmg_contents/
+          cp README.md dmg_contents/
+          hdiutil create -volname "Pin-Board" -srcfolder dmg_contents -ov -format UDZO Pin-Board-macos-arm64.dmg
+
+      - name: Upload macOS ARM Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: macos-arm-build
+          path: Pin-Board-macos-arm64.dmg
+
+  release:
+    name: Create Release
+    needs: [build-linux, build-windows, build-macos-intel, build-macos-arm]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: List artifacts
+        run: find artifacts -type f
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            artifacts/linux-build/Pin-Board-linux-x64.tar.gz
+            artifacts/windows-build/Pin-Board-windows-x64.zip
+            artifacts/macos-intel-build/Pin-Board-macos-intel.dmg
+            artifacts/macos-arm-build/Pin-Board-macos-arm64.dmg
